@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -18,7 +19,13 @@ Route::middleware('auth')->group(function () {
     // admin only
     Route::middleware('role:admin')->group(function () {
         // Data Master
-        // a. Kategori
+        // a. Buku
+        Route::get('book', [BookController::class, 'index']);
+
+
+
+
+
         // b. Produk
         // c. Supplier
 

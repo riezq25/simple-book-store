@@ -74,18 +74,58 @@ class BookController extends Controller
     // Menyimpan buku baru
     function store(Request $request)
     {
+        // validasi
+        $rules = [
+            'title' => [
+                'required',
+                'string',
+                'min:3',
+                'max:255'
+            ],
+            'author' => [
+                'required',
+                'string',
+                'min:3',
+                'max:255'
+            ],
+            'year' => [
+                'required',
+                'min_digits:4',
+                'max_digits:4',
+            ],
+            'price' => [
+                'required',
+                'numeric',
+                'min:1000'
+            ],
+        ];
+
+        $attributes = [
+            'title' => 'Judul Buku',
+            'author' => 'Penulis Buku',
+            'year' => 'Tahun Penulisan Buku',
+            'price' => 'Harga Buku',
+        ];
+
+        $validated = $request
+            ->validate(
+                $rules,
+                [],
+                $attributes
+            );
+
         // ambil data
         // $request == request()
         // dd($request->post());
 
         // simpan data
         // INSERT into books (title, author, year, price) values ('judul buku', 'Ari', '2020', 10000)
-        $book = Book::create([
-            'title' => $request->title,
-            'author' => $request->author,
-            'year' => $request->year,
-            'price' => $request->price,
-        ]);
+        // $book = Book::create([
+        //     'title' => $request->title,
+        //     'author' => $request->author,
+        //     'year' => $request->year,
+        //     'price' => $request->price,
+        // ]);
 
         // $book = new Book;
         // $book->title = $request->title;
@@ -94,6 +134,7 @@ class BookController extends Controller
         // $book->price = $request->price;
         // $book->save();
 
+        $book = Book::create($validated);
 
         return redirect(route('book.index'));
         // redirect

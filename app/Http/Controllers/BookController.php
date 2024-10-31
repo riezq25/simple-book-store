@@ -64,10 +64,17 @@ class BookController extends Controller
     function show($id) {}
 
     // Menampilkan halaman tambah buku
-    function create() {}
+    function create()
+    {
+        $title = 'Tambah Buku';
+        $data = compact('title');
+        return view('dashboard.book.create', $data);
+    }
 
     // Menyimpan buku baru
-    function store(Request $request) {}
+    function store(Request $request) {
+
+    }
 
     // Menampikan halaman ubah buku
     function edit($id) {}

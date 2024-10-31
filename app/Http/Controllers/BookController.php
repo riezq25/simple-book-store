@@ -36,8 +36,9 @@ class BookController extends Controller
         // where author like '%Irma%'
         // or title like '%Irma%'
         // or year like '%2010%'
+        // order by title asc
         // limit 10 offset 0
-        $books = Book::orderBy('title', 'asc')
+        $books = Book::orderBy(request()->get('sort_column', 'title'), request()->get('sort_direction', 'asc'))
             ->when(request()->search, function ($query) {
                 $query->where(function ($query) {
                     $query->orWhere('title', 'like', '%' . request()->search . '%')
@@ -48,7 +49,14 @@ class BookController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        $data = compact('books', 'title');
+        $sortColumns = [
+            'title' => 'Judul',
+            'author'    => 'Penulis',
+            'year'  => 'Tahun Penulisan',
+            'price' => 'Harga'
+        ];
+
+        $data = compact('books', 'title', 'sortColumns');
         return view('dashboard.book.index', $data);
     }
 

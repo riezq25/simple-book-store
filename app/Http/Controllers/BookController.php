@@ -72,8 +72,31 @@ class BookController extends Controller
     }
 
     // Menyimpan buku baru
-    function store(Request $request) {
+    function store(Request $request)
+    {
+        // ambil data
+        // $request == request()
+        // dd($request->post());
 
+        // simpan data
+        // INSERT into books (title, author, year, price) values ('judul buku', 'Ari', '2020', 10000)
+        $book = Book::create([
+            'title' => $request->title,
+            'author' => $request->author,
+            'year' => $request->year,
+            'price' => $request->price,
+        ]);
+
+        // $book = new Book;
+        // $book->title = $request->title;
+        // $book->author = $request->author;
+        // $book->year = $request->year;
+        // $book->price = $request->price;
+        // $book->save();
+
+
+        return redirect(route('book.index'));
+        // redirect
     }
 
     // Menampikan halaman ubah buku

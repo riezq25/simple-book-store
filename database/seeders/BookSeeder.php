@@ -11,7 +11,7 @@ class BookSeeder extends Seeder
     {
         // Menggunakan factory untuk membuat 50 data buku
         Book::factory()
-            ->count(10000)
+            ->count(100)
             ->create();
     }
 }

@@ -26,12 +26,29 @@ class BookController extends Controller
         // 3. Raw Query
         // $books = DB::select('SELECT * FROM books ORDER BY title ASC');
 
+        $title = 'Daftar Buku';
 
         // paginasi 10 data
+        // select
+        // 	*
+        // from
+        // 	books
+        // where author like '%Irma%'
+        // or title like '%Irma%'
+        // or year like '%2010%'
+        // limit 10 offset 0
         $books = Book::orderBy('title', 'asc')
-            ->paginate(10);
+            ->when(request()->search, function ($query) {
+                $query->where(function ($query) {
+                    $query->orWhere('title', 'like', '%' . request()->search . '%')
+                        ->orWhere('author', 'like', '%' . request()->search . '%')
+                        ->orWhere('year', 'like', '%' . request()->search . '%');
+                });
+            })
+            ->paginate(10)
+            ->withQueryString();
 
-        $data = compact('books');
+        $data = compact('books', 'title');
         return view('dashboard.book.index', $data);
     }
 

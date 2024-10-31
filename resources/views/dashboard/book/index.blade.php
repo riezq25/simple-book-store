@@ -3,6 +3,16 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+            <h5 class="card-title mb-4">{{ $title }}</h5>
+
+            <form action="">
+                <h6>Filter</h6>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="search" name="search"
+                        placeholder="Masukkan kata kunci pencarian..." value="{{ request()->search }}">
+                </div>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-hover mb-4">
                     <thead>

@@ -155,10 +155,97 @@ class BookController extends Controller
     }
 
     // Menampikan halaman ubah buku
-    function edit($id) {}
+    function edit($id)
+    {
+        $title = 'Ubah Buku';
+        $book = Book::findOrFail($id);
+        $data = compact('book', 'title');
+        return view('dashboard.book.edit', $data);
+    }
 
     // Menyimpan perubahan buku
-    function update(Request $request, $id) {}
+    function update(Request $request, $id)
+    {
+        try {
+            // validasi
+            $rules = [
+                'title' => [
+                    'required',
+                    'string',
+                    'min:3',
+                    'max:255'
+                ],
+                'author' => [
+                    'required',
+                    'string',
+                    'min:3',
+                    'max:255'
+                ],
+                'year' => [
+                    'required',
+                    'min_digits:4',
+                    'max_digits:4',
+                ],
+                'price' => [
+                    'required',
+                    'numeric',
+                    'min:1000'
+                ],
+            ];
+
+            $attributes = [
+                'title' => 'Judul Buku',
+                'author' => 'Penulis Buku',
+                'year' => 'Tahun Penulisan Buku',
+                'price' => 'Harga Buku',
+            ];
+
+            $validated = $request
+                ->validate(
+                    $rules,
+                    [],
+                    $attributes
+                );
+
+            $book = Book::findOrFail($id);
+            DB::beginTransaction();
+            // update
+            // 	books
+            // set
+            // 	title = 'Database Programming'
+            // where
+            // 	id = 100
+
+            // $book->update([
+            //     'title' => $request->title,
+            //     'author' => $request->author,
+            //     'year' => $request->year,
+            //     'price' => $request->price,
+            // ]);
+
+            // $book->title = $request->title;
+            // $book->author = $request->author;
+            // $book->year = $request->year;
+            // $book->price = $request->price;
+            // $book->save();
+
+            $book->update($validated);
+
+            DB::commit();
+            return redirect(route('book.index'))
+                ->with([
+                    'success'   => 'Berhasil mengubah buku dengan judul ' . $book->title
+                ]);
+            // redirect
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()
+                ->withInput()
+                ->withErrors([
+                    ['error'   => $th->getMessage()]
+                ]);
+        }
+    }
 
     // Menghapus buku
     function destroy($id)

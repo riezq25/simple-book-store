@@ -77,10 +77,11 @@
                                 <td>Rp {{ $book->price }}</td>
                                 <td>
                                     <div class="btn-group btn-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-sm btn-warning">
+                                        <a role="button" href="{{ route('book.edit', $book->id) }}" type="button"
+                                            class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit fa-fw me-2"></i>
                                             <span>Edit</span>
-                                        </button>
+                                        </a>
 
                                         <button onclick="deleteData('{{ route('book.destroy', $book->id) }}')"
                                             type="button" class="btn btn-sm btn-danger">

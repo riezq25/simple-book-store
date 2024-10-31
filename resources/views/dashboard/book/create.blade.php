@@ -40,7 +40,8 @@
                             <div class="mb-3">
                                 <label for="year" class="form-label">Tahun Penulisan</label>
                                 <input required minlength="4" maxlength="4" type="number" class="form-control"
-                                    id="year" name="year" placeholder="Tahun Penulisan buku..." value="{{ old('year') }}">
+                                    id="year" name="year" placeholder="Tahun Penulisan buku..."
+                                    value="{{ old('year') }}">
                                 @error('year')
                                     <div class="text-danger mt-2">{{ $message }}</div>
                                 @enderror

@@ -15,8 +15,8 @@ class BookController extends Controller
         // select * from books
         // order by title asc
         // 1. ORM (Eloquent)
-        $books = Book::orderBy('title', 'asc')
-            ->get();
+        // $books = Book::orderBy('title', 'asc')
+        //     ->get();
 
         // 2. Query Builder
         // $books = DB::table('books')
@@ -26,8 +26,11 @@ class BookController extends Controller
         // 3. Raw Query
         // $books = DB::select('SELECT * FROM books ORDER BY title ASC');
 
-        // debug/
-        // menapilkan variable ke browser
+
+        // paginasi 10 data
+        $books = Book::orderBy('title', 'asc')
+            ->paginate(10);
+
         $data = compact('books');
         return view('dashboard.book.index', $data);
     }

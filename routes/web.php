@@ -20,7 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         // Data Master
         // a. Buku
-        Route::get('book', [BookController::class, 'index']);
+        Route::get('book', [BookController::class, 'index'])
+            ->name('book.index');
 
 
 
@@ -30,7 +31,7 @@ Route::middleware('auth')->group(function () {
         // c. Supplier
 
 
-         // Pengguna
+        // Pengguna
         // a. customer
         Route::get('/pengguna/customer', [CustomerController::class, 'index'])
             ->name('customer.index');

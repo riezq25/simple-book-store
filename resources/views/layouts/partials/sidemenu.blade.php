@@ -38,28 +38,11 @@
         </li>
 
         @hasanyrole(['admin'])
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-store"></i>
-                    <div class="text-truncate">Data Master</div>
+            <li class="menu-item @if (url()->full() == route('book.index')) active @endif">
+                <a href="{{ route('book.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-book"></i>
+                    <div class="text-truncate">Buku</div>
                 </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <div class="text-truncate">Kategori</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <div class="text-truncate">Produk</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <div class="text-truncate">Supplier</div>
-                        </a>
-                    </li>
-                </ul>
             </li>
 
             <li class="menu-header small text-uppercase">

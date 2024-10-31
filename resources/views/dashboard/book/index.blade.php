@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover mb-4">
                     <thead>
                         <tr>
                             <th scope="col" width="5%">#</th>
@@ -17,7 +17,7 @@
                     <tbody>
                         @foreach ($books as $index => $book)
                             <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
+                                <th scope="row">{{ ($books->currentPage() - 1) * $books->perPage() + $index + 1 }}</th>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->year }}</td>
@@ -26,6 +26,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                {{-- paginasi --}}
+                {{ $books->links('pagination::bootstrap-5') }}
+
             </div>
         </div>
     </div>

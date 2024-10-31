@@ -23,8 +23,8 @@ class Customer extends Model
         return $this->belongsTo(City::class, 'city_code', 'city_code');
     }
 
-    public function sales(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(Sale::class, 'customer_id', 'customer_id');
+        return $this->hasMany(Order::class, 'customer_id', 'customer_id');
     }
 }

@@ -49,6 +49,11 @@
             </form>
 
             <div class="table-responsive">
+                <button class="btn btn-primary mb-4">
+                    <i class="fas fa-plus fa-fw me-2"></i>
+                    <span>Tambah Buku</span>
+                </button>
+
                 <table class="table table-hover mb-4">
                     <thead>
                         <tr>

@@ -60,11 +60,21 @@ class BookController extends Controller
         return view('dashboard.book.index', $data);
     }
 
-
     // Menampilkan detail buku (opsional)
+    function show($id) {}
+
     // Menampilkan halaman tambah buku
+    function create() {}
+
     // Menyimpan buku baru
+    function store(Request $request) {}
+
     // Menampikan halaman ubah buku
+    function edit($id) {}
+
     // Menyimpan perubahan buku
+    function update(Request $request, $id) {}
+
     // Menghapus buku
+    function destroy($id) {}
 }

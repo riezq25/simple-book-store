@@ -20,9 +20,26 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         // Data Master
         // a. Buku
-        Route::get('book', [BookController::class, 'index'])
-            ->name('book.index');
-
+        // menampilkan semua data
+        Route::prefix('book')
+            ->name('book.')
+            ->controller(BookController::class)
+            ->group(function () {
+                Route::get('/', 'index')
+                    ->name('index');
+                Route::get('/create', 'create')
+                    ->name('create');
+                Route::post('/', 'store')
+                    ->name('store');
+                Route::get('/{id}', 'show')
+                    ->name('show');
+                Route::get('/{id}/edit', 'edit')
+                    ->name('edit');
+                Route::put('/{id}', 'update')
+                    ->name('update');
+                Route::delete('/{id}', 'destroy')
+                    ->name('destroy');
+            });
 
 
 

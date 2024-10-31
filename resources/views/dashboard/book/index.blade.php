@@ -54,6 +54,8 @@
                     <span>Tambah Buku</span>
                 </a>
 
+                @include('layouts.partials.alert-message')
+
                 <table class="table table-hover mb-4">
                     <thead>
                         <tr>

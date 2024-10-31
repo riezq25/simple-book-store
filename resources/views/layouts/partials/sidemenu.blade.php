@@ -30,8 +30,8 @@
             </li>
         @endhasanyrole
 
-        <li class="menu-item">
-            <a href="#" class="menu-link">
+        <li class="menu-item @if (url()->full() == route('order.index')) active @endif">
+            <a href="{{ route('order.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-list-check"></i>
                 <div class="text-truncate">Riwayat Transaksi</div>
             </a>

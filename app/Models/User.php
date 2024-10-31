@@ -46,4 +46,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    function isCustomer()
+    {
+        return $this->hasAnyRole([
+            'customer'
+        ]);
+    }
+
+    function isAdmin()
+    {
+        return $this->hasAnyRole([
+            'admin'
+        ]);
+    }
 }

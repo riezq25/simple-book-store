@@ -64,6 +64,7 @@
                             <th scope="col">Penulis</th>
                             <th scope="col" width="20%">Tahun</th>
                             <th scope="col">Harga</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,6 +75,20 @@
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->year }}</td>
                                 <td>Rp {{ $book->price }}</td>
+                                <td>
+                                    <div class="btn-group btn-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-sm btn-warning">
+                                            <i class="fas fa-edit fa-fw me-2"></i>
+                                            <span>Edit</span>
+                                        </button>
+
+                                        <button onclick="deleteData('{{ route('book.destroy', $book->id) }}')"
+                                            type="button" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash fa-fw me-2"></i>
+                                            <span>Hapus</span>
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

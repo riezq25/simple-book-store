@@ -161,5 +161,34 @@ class BookController extends Controller
     function update(Request $request, $id) {}
 
     // Menghapus buku
-    function destroy($id) {}
+    function destroy($id)
+    {
+        try {
+            // mencari data
+            // SELECT * from books b
+            // where b.id = '1' limit 1
+
+            // $book = Book::where('id', $id)
+            //     ->firstOrFail();
+
+            DB::beginTransaction();
+            $book = Book::findOrFail($id);
+            // menghapus
+            // delete from books where id = '1'
+            $book->delete();
+
+            DB::commit();
+            return redirect(route('book.index'))
+                ->with([
+                    'success'   => 'Berhasil menghapus buku dengan judul ' . $book->title
+                ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()
+                ->withInput()
+                ->withErrors([
+                    ['error'   => $th->getMessage()]
+                ]);
+        }
+    }
 }

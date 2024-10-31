@@ -18,6 +18,7 @@ class BookFactory extends Factory
             'author' => $this->faker->name,
             'year' => $this->faker->year,
             'price' => $this->faker->numerify('##000'),
+            'stock' => 100
         ];
     }
 }

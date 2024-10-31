@@ -23,8 +23,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')
                 ->name('index');
             Route::get('/create', 'create')
+                ->middleware('role:admin')
                 ->name('create');
             Route::post('/', 'store')
+                ->middleware('role:admin')
                 ->name('store');
             Route::get('/{id}', 'show')
                 ->name('show');

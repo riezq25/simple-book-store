@@ -56,10 +56,12 @@
             </form>
 
             <div class="table-responsive">
-                <a href="{{ route('order.create') }}" role="button" class="btn btn-primary mb-4">
-                    <i class="fas fa-plus fa-fw me-2"></i>
-                    <span>Tambah Buku</span>
-                </a>
+                @hasanyrole('admin')
+                    <a href="{{ route('order.create') }}" role="button" class="btn btn-primary mb-4">
+                        <i class="fas fa-cart-plus fa-fw me-2"></i>
+                        <span>Transaksi Baru</span>
+                    </a>
+                @endhasanyrole
 
                 @include('layouts.partials.alert-message')
 

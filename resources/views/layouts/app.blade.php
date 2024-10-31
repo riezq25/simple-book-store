@@ -38,6 +38,8 @@
 
     <!-- Page CSS -->
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- Helpers -->
     <script src="{{ asset('/') }}vendor/js/helpers.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
@@ -126,6 +128,8 @@
     <!-- Main JS -->
     <script src="{{ asset('/') }}js/main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         function csrfToken() {
             return $('meta[name="_token"]')[0].content;
@@ -181,7 +185,7 @@
                         success: function(response) {
                             window.location.reload();
                         },
-                        error:function(xhr){
+                        error: function(xhr) {
                             window.location.reload();
                         }
                     });

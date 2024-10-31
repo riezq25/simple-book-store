@@ -21,15 +21,6 @@
             </a>
         </li>
 
-        @hasanyrole(['customer'])
-            <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-cart-alt"></i>
-                    <div class="text-truncate">Belanja</div>
-                </a>
-            </li>
-        @endhasanyrole
-
         <li class="menu-item @if (url()->full() == route('order.index')) active @endif">
             <a href="{{ route('order.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-list-check"></i>
